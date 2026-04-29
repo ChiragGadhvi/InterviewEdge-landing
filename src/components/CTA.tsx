@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, BookOpen } from 'lucide-react'
 
-const DOWNLOAD_URL = 'https://github.com/ChiragGadhvi/InterviewEdge/releases/download/v1.0.0/InterviewEdge%201.0.0.exe'
+const DOWNLOAD_URL = 'https://github.com/ChiragGadhvi/InterviewEdge/releases/download/v1.0.0/InterviewEdge.1.0.0.exe'
 
 export default function CTA() {
   return (
