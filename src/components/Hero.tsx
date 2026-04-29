@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import WordsPullUp from './WordsPullUp'
 
-const DOWNLOAD_URL = 'https://github.com/YOUR_USERNAME/InterviewEdge/releases/latest/download/InterviewEdge.exe'
+const DOWNLOAD_URL = 'https://github.com/ChiragGadhvi/InterviewEdge/releases/download/v1.0.0/InterviewEdge%201.0.0.exe'
 
 const navLinks = ['Features', 'How It Works', 'Stealth Mode', 'Languages', 'Download']
 
