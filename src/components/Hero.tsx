@@ -1,12 +1,11 @@
-import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight, X } from 'lucide-react'
 import WordsPullUp from './WordsPullUp'
 
-const DOWNLOAD_URL = 'https://github.com/ChiragGadhvi/InterviewEdge/releases/download/v1.1.0/InterviewEdge.1.1.0.exe'
-
-const navLinks = ['Features', 'How It Works', 'Stealth Mode', 'Languages', 'Download']
-
 export default function Hero() {
+  const [showContact, setShowContact] = useState(false)
+
   return (
     <section className="h-screen p-4 md:p-6">
       <div className="relative w-full h-full rounded-2xl md:rounded-[2rem] overflow-hidden">
@@ -25,26 +24,6 @@ export default function Hero() {
 
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
-
-        {/* Navbar */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10">
-          <div className="bg-black rounded-b-2xl md:rounded-b-3xl px-4 py-2 md:px-8">
-            <nav className="flex items-center gap-3 sm:gap-6 md:gap-12 lg:gap-14">
-              {navLinks.map(link => (
-                <a
-                  key={link}
-                  href={link === 'Download' ? DOWNLOAD_URL : `#${link.toLowerCase().replace(' ', '-')}`}
-                  className="text-[10px] sm:text-xs md:text-sm transition-colors"
-                  style={{ color: 'rgba(225, 224, 204, 0.8)' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#E1E0CC')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(225, 224, 204, 0.8)')}
-                >
-                  {link}
-                </a>
-              ))}
-            </nav>
-          </div>
-        </div>
 
         {/* Hero content — bottom aligned */}
         <div className="absolute bottom-0 left-0 right-0 z-10 p-6 md:p-10">
@@ -76,19 +55,56 @@ export default function Hero() {
                 The invisible AI co-pilot for your next coding interview. Undetectable on any screen share, always one step ahead.
               </motion.p>
 
-              <motion.a
-                href={DOWNLOAD_URL}
-                download
-                className="group inline-flex items-center gap-2 bg-primary rounded-full pl-4 pr-1 py-1 w-fit hover:gap-3 transition-all duration-300"
+              <motion.div
+                className="relative"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.7, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
-                <span className="text-black font-medium text-sm sm:text-base">Download for Windows</span>
-                <span className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <ArrowRight className="w-4 h-4 text-[#E1E0CC]" />
-                </span>
-              </motion.a>
+                <button
+                  onClick={() => setShowContact(v => !v)}
+                  className="group inline-flex items-center gap-2 bg-primary rounded-full pl-4 pr-1 py-1 w-fit hover:gap-3 transition-all duration-300"
+                >
+                  <span className="text-black font-medium text-sm sm:text-base">Get Access</span>
+                  <span className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <ArrowRight className="w-4 h-4 text-[#E1E0CC]" />
+                  </span>
+                </button>
+
+                <AnimatePresence>
+                  {showContact && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                      transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute bottom-full mb-3 left-0 bg-[#0f0f0f] border border-white/10 rounded-2xl p-4 w-72 shadow-2xl"
+                    >
+                      <button
+                        onClick={() => setShowContact(false)}
+                        className="absolute top-3 right-3 text-white/30 hover:text-white/70 transition-colors"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                      <p className="text-white/50 text-xs mb-3">Reach out to get access</p>
+                      <a
+                        href="mailto:chiraggadhvi7272@gmail.com"
+                        className="block text-[#E1E0CC] text-sm font-medium hover:text-white transition-colors mb-1"
+                      >
+                        chiraggadhvi7272@gmail.com
+                      </a>
+                      <a
+                        href="https://chiraggadhvi.in"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-[#E1E0CC]/60 text-sm hover:text-[#E1E0CC] transition-colors"
+                      >
+                        chiraggadhvi.in
+                      </a>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             </div>
           </div>
         </div>

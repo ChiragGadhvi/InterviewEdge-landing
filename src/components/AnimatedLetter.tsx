@@ -9,7 +9,7 @@ interface AnimatedLetterProps {
 
 export default function AnimatedLetter({ char, progress, index, total }: AnimatedLetterProps) {
   const charProgress = index / total
-  const opacity = useTransform(progress, [charProgress - 0.1, charProgress + 0.05], [0.2, 1])
+  const opacity = useTransform(progress, [charProgress - 0.1, charProgress + 0.05], [0.45, 1])
 
   return (
     <motion.span style={{ opacity }} className="inline-block whitespace-pre">
